@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: hello-vault-spring
+#  datasource:
+#    url: jdbc:postgresql://database:5432/postgres
+#    hikari:
+#      connection-test-query: select 1
+#      idle-timeout: 5000
+#      max-lifetime: 120000
+#      maximum-pool-size: 5
+#      minimum-idle: 5
+  cloud:
+    vault:
+      uri: ${VAULT_ADDRESS}
+      connection-timeout: 5000
+      read-timeout: 15000
+      authentication: approle
+      app-role:
+        role-id: ${VAULT_APPROLE_ROLE_ID}
+      kv:
+        enabled: true
+        backend: kv-v2
+      config.lifecycle:
+        enabled: true
+        min-renewal: 10s
+        expiry-threshold: 30s

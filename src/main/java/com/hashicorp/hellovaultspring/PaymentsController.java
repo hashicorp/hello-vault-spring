@@ -9,6 +9,9 @@ import org.springframework.vault.support.VaultResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import javax.annotation.PostConstruct;
 
 
 @RestController
@@ -16,15 +19,27 @@ public class PaymentsController {
     @Autowired
     private VaultTemplate vaultTemplate;
 
+    private WebClient secureServiceClient;
+
+    @PostConstruct
+    private void initClient() {
+        secureServiceClient = WebClient.create("http://secure-service/api");
+    }
+
     @PostMapping("/payments")
     @ResponseBody
-    public ResponseEntity postPayment() {
+    public ResponseEntity<?> postPayment() {
         VaultResponse response = vaultTemplate
                 .opsForKeyValue("kv-v2", VaultKeyValueOperationsSupport.KeyValueBackend.KV_2)
                 .get("api-key");
 
         if ( response != null ) {
-            return new ResponseEntity<>(response.getData(), HttpStatus.OK);
+            return new ResponseEntity<>(secureServiceClient
+                    .get()
+                    .header("X-API-KEY", (String) response.getData().get("api-key-field"))
+                    .retrieve()
+                    .bodyToMono(Object.class).block()
+                    , HttpStatus.OK);
         }
 
         else {

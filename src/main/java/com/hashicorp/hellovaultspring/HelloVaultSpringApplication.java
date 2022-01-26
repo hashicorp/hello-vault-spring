@@ -16,6 +16,7 @@ public class HelloVaultSpringApplication {
     }
 
     private static void setSecretID() {
+        //TODO if possible this should be attached to the renewal logic
         try {
             String secretID = Files.readString(Path.of(System.getenv("VAULT_APPROLE_SECRET_ID_FILE"))).trim();
             System.setProperty("spring.cloud.vault.token", secretID);

@@ -12,7 +12,7 @@ ENTRYPOINT ["java","-jar", "/app.jar"]
 
 HEALTHCHECK \
     --start-period=1s \
-    --interval=1s \
+    --interval=10s \
     --timeout=1s \
     --retries=30 \
         CMD curl --fail -s http://localhost:8080/healthcheck || exit 1

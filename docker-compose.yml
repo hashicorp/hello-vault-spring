@@ -8,8 +8,12 @@ services:
       VAULT_APPROLE_ROLE_ID: demo-web-app
       VAULT_APPROLE_SECRET_ID_FILE: /tmp/secret
       VAULT_DATABASE_CREDS_PATH: database/creds/dev-readonly
-      VAULT_API_KEY_PATH: api-key
+      VAULT_API_KEY_PATH: kv-v2/api-key
       VAULT_API_KEY_FIELD: api-key-field
+      DATABASE_HOSTNAME: database
+      DATABASE_PORT: 5432
+      DATABASE_NAME: postgres
+      DATABASE_TIMEOUT: 10s
       SECURE_SERVICE_ADDRESS: http://secure-service/api
     volumes:
       - type: volume

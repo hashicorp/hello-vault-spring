@@ -14,12 +14,10 @@ spring:
       uri: ${VAULT_ADDRESS}
       connection-timeout: 5000
       read-timeout: 15000
+      fail-fast: true
       authentication: approle
       app-role:
         role-id: ${VAULT_APPROLE_ROLE_ID}
-      kv:
-        enabled: true
-        backend: kv-v2
       config.lifecycle:
         enabled: true
         min-renewal: 10s

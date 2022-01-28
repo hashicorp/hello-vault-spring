@@ -44,7 +44,7 @@ vault write auth/approle/role/dev-role \
     token_policies=dev-policy \
     secret_id_ttl="2m" \
     token_ttl="2m" \
-    token_max_ttl="6m"  # artificially low ttl to demonstrate token renewal
+    token_max_ttl="768h" # low ttl to demonstrate token renewal, high max_ttl to keep app alive
 
 # overwrite our RoleID with a known value to simplify our demo
 vault write auth/approle/role/dev-role/role-id role_id="${APPROLE_ROLE_ID}"

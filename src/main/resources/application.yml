@@ -9,16 +9,3 @@ spring:
 #      max-lifetime: 120000
 #      maximum-pool-size: 5
 #      minimum-idle: 5
-  cloud:
-    vault:
-      uri: ${VAULT_ADDRESS}
-      connection-timeout: 5000
-      read-timeout: 15000
-      fail-fast: true
-      authentication: approle
-      app-role:
-        role-id: ${VAULT_APPROLE_ROLE_ID}
-      config.lifecycle:
-        enabled: true
-        min-renewal: 10s
-        expiry-threshold: 30s

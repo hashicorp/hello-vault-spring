@@ -1,13 +1,13 @@
 FROM maven:3.8.4-openjdk-17 as build
 
 COPY . /build-project
-WORKDIR build-project
+WORKDIR /build-project
 
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17
 EXPOSE 8080
-COPY --from=build /build-project/target/HelloVaultSpring.jar /app.jar
+COPY --from=build /build-project/target/hello-vault-spring.jar /app.jar
 ENTRYPOINT ["java","-jar", "/app.jar"]
 
 HEALTHCHECK \

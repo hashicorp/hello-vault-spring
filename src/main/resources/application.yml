@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: hello-vault-spring
+#  datasource:
+#    url: jdbc:postgresql://database:5432/postgres
+#    hikari:
+#      connection-test-query: select 1
+#      idle-timeout: 5000
+#      max-lifetime: 120000
+#      maximum-pool-size: 5
+#      minimum-idle: 5

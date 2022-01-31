@@ -9,7 +9,6 @@ import org.springframework.vault.authentication.ClientAuthentication;
 import org.springframework.vault.client.VaultEndpoint;
 import org.springframework.vault.config.AbstractVaultConfiguration;
 import org.springframework.vault.support.VaultToken;
-import reactor.util.annotation.NonNullApi;
 
 import java.io.IOException;
 import java.net.URI;

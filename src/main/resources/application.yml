@@ -1,11 +1,32 @@
 spring:
   application:
     name: hello-vault-spring
-#  datasource:
-#    url: jdbc:postgresql://database:5432/postgres
-#    hikari:
-#      connection-test-query: select 1
-#      idle-timeout: 5000
-#      max-lifetime: 120000
-#      maximum-pool-size: 5
-#      minimum-idle: 5
+
+  datasource:
+    url: jdbc:postgresql://database:5432/postgres
+    initialization-mode: always
+    platform: postgres
+    username: vault_db_user
+    password: vault_db_password
+
+  # cloud:
+  #   vault:
+        # uri: https://localhost:8200
+        # connection-timeout: 5000
+        # read-timeout: 15000
+        # ssl:
+        #   trust-store: classpath:/vault.jks
+        #   trust-store-password: changeit
+        # generic:
+        #   enabled: true
+        #   application-name: fakebank
+        #     kv:
+        #       enabled: false
+        #       backend: kv
+        #       application-name: fakebank
+  #     database:
+  #       enabled: true
+  #       role: fakebank-accounts-ro
+  #       backend: database
+  #       username-property: spring.datasource.username
+  #       password-property: spring.datasource.password

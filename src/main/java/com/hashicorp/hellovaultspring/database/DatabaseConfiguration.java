@@ -24,6 +24,11 @@ public class DatabaseConfiguration extends DataSourceProperties {
     @Override
     public void afterPropertiesSet() throws Exception {
 
+        // We are using a generic key-value read operation to fetch the dynamic
+        // database credentials. This will prompt vault server to generate a
+        // new set of credentials, create a corresponding user in the database
+        // (using the template defined in setup/vault-server/entrypoint.sh) and
+        // return this information to us.
         final VaultKeyValueOperations operations = vaultTemplate.opsForKeyValue(
             "database",
             KeyValueBackend.KV_1

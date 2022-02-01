@@ -1,4 +1,4 @@
-package com.hashicorp.hellovaultspring;
+package com.hashicorp.hellovaultspring.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.annotation.PostConstruct;
+
 import java.util.Map;
 import java.util.Objects;
 
 
 @RestController
 public class PaymentsController {
+
     private final String secureServiceAddress = System.getenv("SECURE_SERVICE_ADDRESS");
     private final String kvMountPath          = System.getenv("VAULT_KV2_MOUNT");
     private final String apiKeyPath           = System.getenv("VAULT_API_KEY_PATH");

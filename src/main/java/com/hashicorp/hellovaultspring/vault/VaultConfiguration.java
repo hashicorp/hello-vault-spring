@@ -1,4 +1,4 @@
-package com.hashicorp.hellovaultspring;
+package com.hashicorp.hellovaultspring.vault;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.vault.authentication.AppRoleAuthentication;
@@ -19,8 +19,8 @@ import java.nio.file.Path;
 public class VaultConfiguration extends AbstractVaultConfiguration {
 
     private final String vaultAddress = System.getenv("VAULT_ADDRESS");
-    private final String secretIdFile = System.getenv("VAULT_APPROLE_SECRET_ID_FILE");
     private final String appRoleId    = System.getenv("VAULT_APPROLE_ROLE_ID");
+    private final String secretIdFile = System.getenv("VAULT_APPROLE_SECRET_ID_FILE");
 
 
     @Override

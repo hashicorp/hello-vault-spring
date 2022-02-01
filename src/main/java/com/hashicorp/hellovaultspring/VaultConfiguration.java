@@ -17,6 +17,7 @@ import java.nio.file.Path;
 
 @Configuration
 public class VaultConfiguration extends AbstractVaultConfiguration {
+
     private final String vaultAddress = System.getenv("VAULT_ADDRESS");
     private final String secretIdFile = System.getenv("VAULT_APPROLE_SECRET_ID_FILE");
     private final String appRoleId    = System.getenv("VAULT_APPROLE_ROLE_ID");

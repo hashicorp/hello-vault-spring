@@ -7,7 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductsTable extends CrudRepository<Product, Long> {
-
     List<Product> findAll();
-
 }

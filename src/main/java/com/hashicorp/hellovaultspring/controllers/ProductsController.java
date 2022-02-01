@@ -2,7 +2,7 @@ package com.hashicorp.hellovaultspring.controllers;
 
 import java.util.List;
 
-import com.hashicorp.hellovaultspring.database.ProducsTable;
+import com.hashicorp.hellovaultspring.database.ProductsTable;
 import com.hashicorp.hellovaultspring.database.Product;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductsController {
 
     @Autowired
-    private ProducsTable table;
+    private ProductsTable table;
 
     @GetMapping("/products")
     public ResponseEntity<List<Product>> products(Model model) {

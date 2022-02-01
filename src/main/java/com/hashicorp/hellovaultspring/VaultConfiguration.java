@@ -15,7 +15,6 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-
 @Configuration
 public class VaultConfiguration extends AbstractVaultConfiguration {
     private final String vaultAddress = System.getenv("VAULT_ADDRESS");

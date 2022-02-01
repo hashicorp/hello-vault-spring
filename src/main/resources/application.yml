@@ -4,5 +4,7 @@ spring:
 
   datasource:
     url: ${DATABASE_URL}
-    platform: ${DATABASE_PLATFORM}
-    initialization-mode: always
+  sql:
+    init:
+      platform: ${DATABASE_PLATFORM}
+      mode: always

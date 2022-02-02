@@ -1,43 +1,26 @@
 package com.hashicorp.hellovaultspring.database;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.vault.core.VaultKeyValueOperations;
-import org.springframework.vault.core.VaultTemplate;
-import org.springframework.vault.core.VaultKeyValueOperationsSupport.KeyValueBackend;
+import org.springframework.core.env.Environment;
+import org.springframework.vault.annotation.VaultPropertySource;
 
 @Primary
 @Configuration
+@VaultPropertySource(value = "database/creds/dev-readonly", renewal = VaultPropertySource.Renewal.RENEW)
 @ConfigurationProperties(prefix = "spring.datasource")
 public class DatabaseConfiguration extends DataSourceProperties {
 
-    private final String databaseCredentialsPath = System.getenv("VAULT_DATABASE_CREDENTIALS_PATH");
-
     @Autowired
-    private VaultTemplate vaultTemplate;
+    Environment env;
 
     @Override
     public void afterPropertiesSet() throws Exception {
-
-        // We are using a generic key-value read operation to fetch the dynamic
-        // database credentials. This will prompt vault server to generate a
-        // new set of credentials, create a corresponding user in the database
-        // (using the template defined in setup/vault-server/entrypoint.sh) and
-        // return this information to us.
-        final VaultKeyValueOperations operations = vaultTemplate.opsForKeyValue(
-            "database",
-            KeyValueBackend.KV_1
-        );
-
-        final Map<String, Object> data = operations.get(databaseCredentialsPath).getData();
-
-        this.setUsername((String) data.get("username"));
-        this.setPassword((String) data.get("password"));
+        this.setUsername(env.getProperty("username"));
+        this.setPassword(env.getProperty("password"));
 
         super.afterPropertiesSet();
     }

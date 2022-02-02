@@ -8,3 +8,8 @@ spring:
     init:
       platform: ${DATABASE_PLATFORM}
       mode: always
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.vault: DEBUG

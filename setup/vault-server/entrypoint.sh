@@ -44,7 +44,7 @@ vault write auth/approle/role/dev-role \
     token_policies=dev-policy \
     secret_id_ttl="2m" \
     token_ttl="2m" \
-    token_max_ttl="768h" # low ttl to demonstrate token renewal, high max_ttl to keep app alive
+    token_max_ttl="768h" # low ttl to demonstrate token renewal, high max_ttl to keep token alive
 
 # overwrite our RoleID with a known value to simplify our demo
 vault write auth/approle/role/dev-role/role-id role_id="${APPROLE_ROLE_ID}"
@@ -99,8 +99,8 @@ vault write -force database/config/my-postgresql-database
 vault write database/roles/dev-readonly \
     db_name=my-postgresql-database \
     creation_statements="CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; GRANT readonly TO \"{{name}}\";" \
-    default_ttl="768h" \
-    max_ttl="768h" # the database credentials lease is not currently renewed by the application
+    default_ttl="1m" \
+    max_ttl="768h" # low ttl to demonstrate token renewal, high max_ttl to keep credentials
 
 # this container is now healthy
 touch /tmp/healthy

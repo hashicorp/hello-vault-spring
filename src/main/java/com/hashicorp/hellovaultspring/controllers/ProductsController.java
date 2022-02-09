@@ -19,7 +19,7 @@ public class ProductsController {
     private ProductsTable table;
 
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> products(Model model) {
+    public ResponseEntity<List<Product>> products() {
 
         List<Product> products = table.findAll();
 
@@ -27,7 +27,7 @@ public class ProductsController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
 }

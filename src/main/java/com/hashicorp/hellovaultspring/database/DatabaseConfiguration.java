@@ -10,7 +10,7 @@ import org.springframework.vault.annotation.VaultPropertySource;
 
 @Primary
 @Configuration
-// @VaultPropertySource provides a mechanism for adding data retrieved from to Spring's Environment
+// @VaultPropertySource provides a mechanism for adding data retrieved from Vault to Spring's Environment
 // https://docs.spring.io/spring-vault/docs/current/api/org/springframework/vault/annotation/VaultPropertySource.html
 @VaultPropertySource(value = "database/creds/dev-readonly", renewal = VaultPropertySource.Renewal.RENEW)
 @ConfigurationProperties(prefix = "spring.datasource")

@@ -67,16 +67,6 @@ curl -s -X POST http://localhost:8080/payments | jq
 }
 ```
 
-Check the logs:
-
-```shell-session
-docker logs hello-vault-spring-app-1
-```
-
-```log
-// TODO - add logs from java application
-```
-
 ### 3. Try out `GET /products` endpoint (dynamic secrets workflow)
 
 `GET /products` endpoint is a simple example of the dynamic secrets workflow. Our application uses Vault's database
@@ -100,16 +90,6 @@ curl -s -X GET http://localhost:8080/products | jq
 ]
 ```
 
-Check the logs:
-
-```shell-session
-docker logs hello-vault-spring-app-1
-```
-
-```log
-// TODO - add logs from java application
-```
-
 ### 4. Examine the logs for renew logic
 
 One of the complexities of dealing with short-lived secrets is that they must be renewed periodically. This includes
@@ -118,21 +98,25 @@ authentication tokens and database credentials.
 Examine the logs for how the Vault auth token is periodically renewed:
 
 ```shell-session
-docker logs hello-vault-spring-app-1 2>&1 | grep auth
+docker logs hello-vault-spring-app-1 2>&1 | grep "LifecycleAwareSessionManager"
 ```
 
 ```log
-// TODO - add logs from java application
+2022-02-02 21:20:36.838  INFO 1 --- [           main] o.s.v.a.LifecycleAwareSessionManager     : Scheduling Token renewal
+2022-02-02 21:22:31.873  INFO 1 --- [TaskScheduler-1] o.s.v.a.LifecycleAwareSessionManager     : Renewing token
+2022-02-02 21:22:32.042  INFO 1 --- [TaskScheduler-1] o.s.v.a.LifecycleAwareSessionManager     : Scheduling Token renewal
 ```
 
 Examine the logs for database credentials renew / reconnect cycle:
 
 ```shell-session
-docker logs hello-vault-spring-app-1 2>&1 | grep database
+docker logs hello-vault-spring-app-1 2>&1 | grep "database/creds/dev-readonly"
 ```
 
 ```log
-// TODO - add logs from java application
+2022-02-02 21:16:35.737 DEBUG 1 --- [TaskScheduler-1] cretLeaseContainer$LeaseRenewalScheduler : Renewing lease database/creds/dev-readonly/59mGm1fahgzPLo2hBiA3GRtM for secret database/creds/dev-readonly
+2022-02-02 21:16:35.770 DEBUG 1 --- [TaskScheduler-1] o.s.v.core.lease.SecretLeaseContainer    : Secret database/creds/dev-readonly with Lease database/creds/dev-readonly/59mGm1fahgzPLo2hBiA3GRtM qualified for renewal
+2022-02-02 21:16:35.771 DEBUG 1 --- [TaskScheduler-1] cretLeaseContainer$LeaseRenewalScheduler : Scheduling renewal for secret database/creds/dev-readonly with lease database/creds/dev-readonly/59mGm1fahgzPLo2hBiA3GRtM, lease duration 60
 ```
 
 ## Integration Tests

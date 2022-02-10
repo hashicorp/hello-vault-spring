@@ -30,7 +30,10 @@ public class VaultConfiguration extends AbstractVaultConfiguration {
 
     @Override
     public ClientAuthentication clientAuthentication() {
+        // Fetch our wrapped Secret ID from a file our trusted orchestrator prepared for us
+        // and use it to populate our App Role credentials
         // https://docs.spring.io/spring-vault/docs/current/reference/html/#vault.core.authentication
+        // https://docs.spring.io/spring-vault/docs/current/reference/html/#vault.authentication.approle
         VaultToken wrappedToken = VaultToken.of(getSecretIDFromFilePath(secretIdFile));
 
         AppRoleAuthenticationOptions options = AppRoleAuthenticationOptions

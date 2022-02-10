@@ -41,9 +41,7 @@ public class PaymentsController {
                 .opsForVersionedKeyValue(kvMountPath)
                 .get(apiKeyPath);
 
-        assert response != null;
-
-        if ( response.hasData() ) {
+        if (response != null && response.hasData()) {
 
             String apiKey = (String) Objects.requireNonNull(response.getData()).get(apiKeyField);
 

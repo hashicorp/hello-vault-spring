@@ -1,7 +1,11 @@
-# hello-vault-spring
+# Vault Sample Application
 
-This is a sample application that demonstrates how to authenticate to and retrieve secrets from HashiCorp [Vault][vault]
-.
+This is a sample application that demonstrates various aspects of interacting
+with HashiCorp [Vault][vault], including:
+
+- [AppRole][vault-app-role] authentication with a [response-wrapping token][vault-token-wrapping]
+- Reading a static secret from [kv-v2 secrets engine][vault-kv-v2]
+- Reading a dynamic secret from [MSSQL database secrets engine][vault-mssql]
 
 ## Prerequisites
 
@@ -128,6 +132,11 @@ bring down the environment:
 ./run-tests.sh
 ```
 
+## Other Sample Apps
+
+- [hello-vault-go][hello-vault-go]
+- [hello-vault-dotnet][hello-vault-dotnet]
+
 ## Stack Design
 
 ### API
@@ -141,12 +150,14 @@ bring down the environment:
 
 ![arch overview](images/arch-overview.svg)
 
-[vault]:           https://www.vaultproject.io/
-
-[docker]:          https://docs.docker.com/get-docker/
-
-[docker-compose]:  https://docs.docker.com/compose/install/
-
-[curl]:            https://curl.se/
-
-[jq]:              https://stedolan.github.io/jq/
+[vault]:                 https://www.vaultproject.io/
+[vault-app-role]:        https://www.vaultproject.io/docs/auth/approle
+[vault-token-wrapping]:  https://www.vaultproject.io/docs/concepts/response-wrapping
+[vault-kv-v2]:           https://www.vaultproject.io/docs/secrets/kv/kv-v2
+[vault-mssql]:           https://www.vaultproject.io/docs/secrets/databases/mssql
+[docker]:                https://docs.docker.com/get-docker/
+[docker-compose]:        https://docs.docker.com/compose/install/
+[curl]:                  https://curl.se/
+[jq]:                    https://stedolan.github.io/jq/
+[hello-vault-go]:        https://github.com/hashicorp/hello-vault-go
+[hello-vault-dotnet]:    https://github.com/hashicorp/hello-vault-dotnet

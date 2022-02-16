@@ -1,7 +1,7 @@
 # hello-vault-spring
 
 Runnable examples of how to integrate a Java Spring Boot application with HashiCorp
-[Vault](https://www.vaultproject.io/).
+[Vault](https://www.vaultproject.io/), using the community-maintained [Spring Vault](https://spring.io/projects/spring-vault) library.
 
 ## [Quick Start](./quick-start/)
 

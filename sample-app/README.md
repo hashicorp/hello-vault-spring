@@ -5,7 +5,9 @@ with HashiCorp [Vault][vault], including:
 
 - [AppRole][vault-app-role] authentication with a [response-wrapping token][vault-token-wrapping]
 - Reading a static secret from [kv-v2 secrets engine][vault-kv-v2]
-- Reading a dynamic secret from [MSSQL database secrets engine][vault-mssql]
+- Reading a dynamic secret from [PostgreSQL database secrets engine][vault-postgresql]
+- Authentication token [lease renewal][vault-leases]
+- Database credentials [lease renewal][vault-leases]
 
 ## Prerequisites
 
@@ -151,10 +153,11 @@ bring down the environment:
 ![arch overview](images/arch-overview.svg)
 
 [vault]:                 https://www.vaultproject.io/
+[vault-leases]:          https://www.vaultproject.io/docs/concepts/lease
 [vault-app-role]:        https://www.vaultproject.io/docs/auth/approle
 [vault-token-wrapping]:  https://www.vaultproject.io/docs/concepts/response-wrapping
 [vault-kv-v2]:           https://www.vaultproject.io/docs/secrets/kv/kv-v2
-[vault-mssql]:           https://www.vaultproject.io/docs/secrets/databases/mssql
+[vault-postgresql]:      https://www.vaultproject.io/docs/secrets/databases/postgresql
 [docker]:                https://docs.docker.com/get-docker/
 [docker-compose]:        https://docs.docker.com/compose/install/
 [curl]:                  https://curl.se/

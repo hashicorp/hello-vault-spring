@@ -36,20 +36,20 @@ public class App implements CommandLineRunner {
         Map<String, String> data = new HashMap<>();
         data.put("password", "Hashi123");
 
-        Versioned.Metadata createResponse = vaultTemplate
-                .opsForVersionedKeyValue("secret")
-                .put("my-secret-password", data);
+        vaultTemplate
+            .opsForVersionedKeyValue("secret")
+            .put("my-secret-password", data);
 
         System.out.println("Secret written successfully.");
 
         // Read a secret
-        Versioned<Map<String, Object>> readResponse = vaultTemplate
+        Versioned<Map<String, Object>> secret = vaultTemplate
                 .opsForVersionedKeyValue("secret")
                 .get("my-secret-password");
 
         String password = "";
-        if (readResponse != null && readResponse.hasData()) {
-            password = (String) readResponse.getData().get("password");
+        if (secret != null && secret.hasData()) {
+            password = (String) secret.getData().get("password");
         }
 
         if (!password.equals("Hashi123")) {

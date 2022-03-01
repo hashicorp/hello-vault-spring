@@ -3,17 +3,21 @@
 This is a sample application that demonstrates various aspects of interacting
 with HashiCorp [Vault][vault], including:
 
-- [AppRole][vault-app-role] authentication with a [response-wrapping token][vault-token-wrapping]
+- [AppRole][vault-app-role] authentication with a [response-wrapping
+  token][vault-token-wrapping]
 - Reading a static secret from [kv-v2 secrets engine][vault-kv-v2]
-- Reading a dynamic secret from [PostgreSQL database secrets engine][vault-postgresql]
+- Reading a dynamic secret from [PostgreSQL database secrets
+  engine][vault-postgresql]
 - Authentication token [lease renewal][vault-leases]
 - Database credentials [lease renewal][vault-leases]
 
 ## Prerequisites
 
-1. [`docker`][docker] to easily run the application in the same environment regardless of your local operating system
-1. [`docker compose`][docker-compose] to easily set up all the components of the demo (the application's web server, the
-   Vault server, the database, etc.) all at once
+1. [`docker`][docker] to easily run the application in the same environment
+   regardless of your local operating system
+1. [`docker compose`][docker-compose] to easily set up all the components of the
+   demo (the application's web server, the Vault server, the database, etc.) all
+   at once
 1. [`curl`][curl] to test our endpoints
 1. [`jq`][jq] _(optional)_ for prettier `JSON` output
 
@@ -60,8 +64,9 @@ hello-vault-spring-database-1               Up About a minute (healthy)   0.0.0.
 
 ### 2. Try out `POST /payments` endpoint (static secrets workflow)
 
-`POST /payments` endpoint is a simple example of the static secrets workflow. Our service will make a request to another
-service's restricted API endpoint using an API key value stored in Vault's static secrets engine.
+`POST /payments` endpoint is a simple example of the static secrets workflow.
+Our service will make a request to another service's restricted API endpoint
+using an API key value stored in Vault's static secrets engine.
 
 ```shell-session
 curl -s -X POST http://localhost:8080/payments | jq
@@ -75,8 +80,9 @@ curl -s -X POST http://localhost:8080/payments | jq
 
 ### 3. Try out `GET /products` endpoint (dynamic secrets workflow)
 
-`GET /products` endpoint is a simple example of the dynamic secrets workflow. Our application uses Vault's database
-secrets engine to generate dynamic database credentials, which are then used to connect to and retrieve data from a
+`GET /products` endpoint is a simple example of the dynamic secrets workflow.
+Our application uses Vault's database secrets engine to generate dynamic
+database credentials, which are then used to connect to and retrieve data from a
 PostgreSQL database.
 
 ```shell-session
@@ -98,8 +104,9 @@ curl -s -X GET http://localhost:8080/products | jq
 
 ### 4. Examine the logs for renew logic
 
-One of the complexities of dealing with short-lived secrets is that they must be renewed periodically. This includes
-authentication tokens and database credentials.
+One of the complexities of dealing with short-lived secrets is that they must be
+renewed periodically. This includes authentication tokens and database
+credentials.
 
 Examine the logs for how the Vault auth token is periodically renewed:
 
@@ -127,8 +134,8 @@ docker logs hello-vault-spring-app-1 2>&1 | grep "database/creds/dev-readonly"
 
 ## Integration Tests
 
-The following script will bring up the docker-compose environment, run the curl commands above, verify the output, and
-bring down the environment:
+The following script will bring up the docker-compose environment, run the curl
+commands above, verify the output, and bring down the environment:
 
 ```shell-session
 ./run-tests.sh

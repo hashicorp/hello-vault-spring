@@ -1,8 +1,8 @@
 # Quick Start
 
 This is a quick example of how to retrieve your first secret from HashiCorp
-[Vault](https://www.vaultproject.io/), using the community-maintained
-client library [spring-vault](https://spring.io/projects/spring-vault).
+[Vault](https://www.vaultproject.io/), using the community-maintained client
+library [spring-vault](https://spring.io/projects/spring-vault).
 
 ## How To Use
 

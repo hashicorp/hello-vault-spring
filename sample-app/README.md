@@ -143,14 +143,14 @@ bring down the environment:
 
 ### API
 
-| Endpoint             | Description                                                            |
-| -------------------- | ---------------------------------------------------------------------- |
-| **POST** `/payments` | A simple example of Vault static secrets workflow (see example above)  |
-| **GET** `/products`  | A simple example of Vault dynamic secrets workflow (see example above) |
+| Endpoint             | Description                                                                     |
+| -------------------- | ------------------------------------------------------------------------------- |
+| **POST** `/payments` | A simple example of Vault static secrets workflow (refer to the example above)  |
+| **GET** `/products`  | A simple example of Vault dynamic secrets workflow (refer to the example above) |
 
 ### Docker Compose Architecture
 
-![arch overview](images/arch-overview.svg)
+![Architecture overview of the docker-compose setup. Our Spring service authenticates with a Vault dev instance using a token provided by a Trusted Orchestrator. It then fetches an api key from Vault to communicate with a Secure Service. It also connects to a PostgreSQL database using Vault-provided credentials.](images/arch-overview.svg)
 
 [vault]:                 https://www.vaultproject.io/
 [vault-leases]:          https://www.vaultproject.io/docs/concepts/lease

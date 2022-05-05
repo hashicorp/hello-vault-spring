@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.3</version>
+        <version>2.6.7</version>
         <relativePath/>
     </parent>
     <groupId>com.hashicorp</groupId>
@@ -14,7 +14,7 @@
     <name>hello-vault-spring</name>
     <properties>
         <java.version>17</java.version>
-        <spring-cloud.version>2021.0.0</spring-cloud.version>
+        <spring-cloud.version>2021.0.2</spring-cloud.version>
         <start-class>com.hashicorp.hellovaultspring.HelloVaultSpringApplication</start-class>
     </properties>
     <dependencies>

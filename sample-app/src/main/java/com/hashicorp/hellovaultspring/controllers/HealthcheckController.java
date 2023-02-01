@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) HashiCorp, Inc.
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 package com.hashicorp.hellovaultspring.controllers;
 
 import org.springframework.boot.system.SystemProperties;

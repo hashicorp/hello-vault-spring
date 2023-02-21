@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 FROM maven:3.8.4-openjdk-17 as build
 
 COPY . /build-project

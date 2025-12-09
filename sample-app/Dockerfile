@@ -1,4 +1,4 @@
-# Copyright (c) HashiCorp, Inc.
+# Copyright IBM Corp. 2022, 2024
 # SPDX-License-Identifier: MPL-2.0
 
 FROM maven:3.8.4-openjdk-17 as build

@@ -1,4 +1,4 @@
--- Copyright IBM Corp. 2022, 2024
+-- Copyright IBM Corp. 2022, 2026
 -- SPDX-License-Identifier: MPL-2.0
 
 CREATE ROLE vault_db_user LOGIN SUPERUSER PASSWORD 'vault_db_password';
